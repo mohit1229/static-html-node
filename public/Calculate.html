@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emission Calculator</title>
+    <link rel="stylesheet" href="css/calc.css">
+</head>
+<body>
+    
+    <header>
+        
+        <div class="header-container">
+          <div class="logo">
+            <img src="css/logo.jpg" alt="Coalify Logo">
+          </div>
+          <h1 class="title" style="padding-left: 10px; color: aliceblue; padding-top: 20px;"><i>Coalify</i></h1>
+        </div>
+      </header>
+      <div class="space" style="min-height: 30px;">
+
+      </div>
+      <div class="outerContainer">
+    <div class="container">
+        <h1>Carbon Emission Calculator</h1>
+        <form id="predictionForm">
+            <div class="row">
+                <div class="input-container">
+                    <label for="Capacity">Capacity:</label>
+                    <input type="number" id="Capacity" 
+                    placeholder="in Mtpa"
+                    name="Capacity" step="0.01" required>
+                </div>
+                <div class="input-container">
+                    <label for="Production">Production:</label>
+                    <input type="number" id="Production" 
+                    placeholder="in Mtpa"
+                    
+                    name="Production" step="0.01" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-container">
+                    <label for="Mine_size">Mine Size:</label>
+                    <input type="number" id="Mine_size" 
+                    placeholder="in Km2"
+                    
+                    name="Mine_size" step="0.01" required>
+                </div>
+                <div class="input-container">
+                    <label for="Mine_Depth">Mine Depth:</label>
+                    <input type="number" id="Mine_Depth" 
+                    placeholder="in meters"
+                    
+                    name="Mine_Depth" step="0.01" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-container">
+                    <label for="Workforce_Size">Workforce Size:</label>
+                    <input type="number" id="Workforce_Size" name="Workforce_Size" step="0.01" required>
+                </div>
+                <div class="input-container">
+                    <label for="Total_Reserves">Total Reserves:</label>
+                    <input type="number" id="Total_Reserves" 
+                    placeholder="(Proven and Probable, Mt)"
+                    name="Total_Reserves" step="0.01" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-container">
+                    <label for="Total_Resource">Total Resource:</label>
+                    <input type="number" id="Total_Resource" 
+                    placeholder="(Inferred, Indicated, Measured)"
+                    name="Total_Resource" step="0.01" required>
+                </div>
+            </div>
+            <button type="submit" id="generateResults">Generate Results</button>
+        </form>
+
+        <!-- Result Section -->
+        <div id="results" class="results"></div>
+    </div>
+</div>
+<h5 onclick="window.location.href='cSink.html'" style="font-size: 20px; padding-top: 10px;
+text-align: center;color: aliceblue;
+">Calculate C-Sink</h5>
+
+<footer>
+    <p>Contact us: info@coalify.com</p>
+  </footer>
+    <!-- JS Script -->
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const formData = {
+                Capacity: parseFloat(document.getElementById('Capacity').value),
+                Production: parseFloat(document.getElementById('Production').value),
+                Mine_size: parseFloat(document.getElementById('Mine_size').value),
+                Mine_Depth: parseFloat(document.getElementById('Mine_Depth').value),
+                Workforce_Size: parseFloat(document.getElementById('Workforce_Size').value),
+                Total_Reserves: parseFloat(document.getElementById('Total_Reserves').value),
+                Total_Resource: parseFloat(document.getElementById('Total_Resource').value)
+            };
+
+            try {
+                // Send POST request to FastAPI
+                const response = await fetch('http://127.0.0.1:8000/predict/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                // Display result
+                document.getElementById('results').innerText = `Predicted Carbon Emission (in M tonnes/yr): ${result.prediction}`;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('results').innerText = 'Error occurred while predicting.';
+            }
+        });
+    </script>
+</body>
+</html>

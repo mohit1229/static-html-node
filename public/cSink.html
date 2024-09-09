@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-Sink Calculator</title>
+<style>
+    body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(css/back1.jpg) no-repeat center center/cover;
+
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+header {
+  /* background-color: rgba(0, 58, 79, 0.85); */
+  background-color: rgba(5, 83, 111, 0.722); /* Blue from login screen */
+  /* Blue from login screen */
+  padding: 10px 20px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  vertical-align: middle;
+  height: 80px;
+    width: 80px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    margin: 20px 0;
+}
+
+label {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+input {
+    width: 300px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    width: 200px;
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #005f99;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #004070;
+}
+</style>
+</head>
+
+<body>
+    <header>
+    <div class="header-container">
+        <div class="logo">
+          <img src="css/logo.jpg" alt="Coalify Logo">
+        </div>
+        <h1 class="title" style="font-weight: bold; font-size: 28px; padding-left: 10px;" ><i>Coalify</i></h1>
+      </div>
+    </header>
+    <div class="container">
+        <h1>C- Sink Calculator</h1>
+
+        <label for="trees">Number of trees per hectare</label>
+        <input type="number" id="trees" name="trees">
+
+        <label for="area">Afforestation area (hectares)</label>
+        <input type="number" id="area" name="area">
+
+        <button onclick="calculateCSink()">Generate Results</button>
+
+        <h2>C - Sink Gap Calculator</h2>
+
+        <label for="emissions">Emissions (tons CO2)</label>
+        <input type="number" id="emissions" name="emissions">
+
+        <label for="sink">C- Sink (tons CO2)</label>
+        <input type="number" id="sink" name="sink">
+
+        <button onclick="calculateCSinkGap()">Generate Results</button>
+    </div>
+    <script>
+        function calculateCSink() {
+    const trees = document.getElementById('trees').value;
+    const area = document.getElementById('area').value;
+    if (trees && area) {
+        const sink = trees * area * 0.5; // Example calculation
+        alert('C-Sink: ' + sink + ' tons CO2');
+    } else {
+        alert('Please fill in both fields');
+    }
+}
+
+function calculateCSinkGap() {
+    const emissions = document.getElementById('emissions').value;
+    const sink = document.getElementById('sink').value;
+    if (emissions && sink) {
+        const gap = emissions - sink; // Example calculation
+        alert('C-Sink Gap: ' + gap + ' tons CO2');
+    } else {
+        alert('Please fill in both fields');
+    }
+}
+    </script>
+</body>
+</html>

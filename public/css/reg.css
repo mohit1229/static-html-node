@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.container {
+    background: url(back1.jpg) no-repeat center center/cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 70px;
+    margin-right: 5px;
+}
+
+.logo span {
+    font-size: 32px;
+    font-weight: 500;
+    font-style: italic;
+    background: linear-gradient(to right, #002744, #00aaff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login-signup-container {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+    padding: 40px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    width: 400px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+    position: relative;
+}
+
+.toggle-buttons button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    width: 50%;
+}
+
+.toggle-buttons button.active {
+    background: linear-gradient(to right, #1E3A46, #4B8FAC);
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.form-container {
+    display: flex;
+    width: 200%;
+    transition: transform 0.4s ease-in-out;
+}
+
+.form-box {
+    width: 50%;
+    padding: 0 20px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.login-form {
+    opacity: 1;
+}
+
+.signup-form {
+    opacity: 0;
+}
+
+form input {
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form .forgot-password {
+    color: #002744;
+    text-align: right;
+    display: block;
+    margin-bottom: 20px;
+    padding-right: 69px;
+}
+
+form .login-button, form .signup-button {
+    background: linear-gradient(to right, #1E3A46, #4B8FAC);
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+form .login-button:hover, form .signup-button:hover {
+    background: linear-gradient(to right, #4B8FAC, #1E3A46);
+}
+
+/* Other CSS unchanged */
+
+/* Styling for the alternative signup options */
+.alt-signup-options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.alt-signup-options a {
+    width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.alt-signup-options a:hover {
+    background-color: #ddd;
+}
+
+.alt-signup-options img {
+    width: 75px; /* Adjust size as needed */
+    height: 34px;
+}
